@@ -58,7 +58,7 @@ import { HomeButtonContextMenu } from "../spaces/SpacePanel";
 
 const contextMenuBelow = (elementRect: DOMRect) => {
     // align the context menu's icons with the icon which opened the context menu
-    const left = elementRect.left + window.scrollX;
+    const left = elementRect.left + window.scrollX - elementRect.width;
     const top = elementRect.bottom + window.scrollY + 12;
     const chevronFace = ChevronFace.None;
     return { left, top, chevronFace };
