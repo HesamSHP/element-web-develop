@@ -189,8 +189,8 @@ $left-gutter: 64px;
         }
 
         .mx_EventTile_msgOption {
-            float: right;
-            text-align: right;
+            float: left;
+            text-align: left;
             position: relative;
             width: 90px;
 
@@ -319,14 +319,14 @@ $left-gutter: 64px;
     &[data-layout="group"] {
         .mx_EventTile_avatar {
             top: 14px;
-            left: $spacing-8;
+            right: $spacing-8;
         }
 
         .mx_EventTile_line,
         .mx_EventTile_reply {
             padding-top: var(--EventTile_group_line-spacing-block-start);
             padding-bottom: var(--EventTile_group_line-spacing-block-end);
-            padding-left: var(--EventTile_group_line-spacing-inline-start);
+            padding-right: var(--EventTile_group_line-spacing-inline-start);
             line-height: var(--EventTile_group_line-line-height);
         }
 
@@ -347,7 +347,7 @@ $left-gutter: 64px;
 
         .mx_MessageTimestamp {
             position: absolute;
-            left: 0;
+            right: 0;
             text-align: center;
         }
 
@@ -362,7 +362,7 @@ $left-gutter: 64px;
 
         > .mx_DisambiguatedProfile {
             line-height: $font-20px;
-            margin-left: $left-gutter;
+            margin-right: $left-gutter;
             max-width: calc(100% - $left-gutter);
         }
 
@@ -377,7 +377,7 @@ $left-gutter: 64px;
             .mx_ThreadSummary,
             .mx_ThreadSummary_icon,
             .mx_EventTile_line {
-                margin-right: $inline-end-margin;
+                margin-left: $inline-end-margin;
                 min-height: $font-14px;
             }
 
@@ -503,7 +503,7 @@ $left-gutter: 64px;
 
     &[data-layout="group"] {
         .mx_EventTile_line {
-            padding-left: $left-gutter;
+            padding-right: $left-gutter;
         }
 
         .mx_GenericEventListSummary_unstyledList > .mx_EventTile_info .mx_EventTile_avatar ~ .mx_EventTile_line {
@@ -523,7 +523,7 @@ $left-gutter: 64px;
     */
     overflow-y: hidden;
     overflow-x: hidden;
-    margin-right: var(--EventTile_content-margin-inline-end);
+    margin-left: var(--EventTile_content-margin-inline-end);
 
     .mx_EventTile_edited,
     .mx_EventTile_pendingModeration {
