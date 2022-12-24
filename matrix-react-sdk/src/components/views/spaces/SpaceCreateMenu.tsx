@@ -334,7 +334,7 @@ const SpaceCreateMenu = ({ onFinished }) => {
 
     return (
         <ContextMenu
-            left={72}
+            right={72}
             top={62}
             chevronOffset={0}
             chevronFace={ChevronFace.None}
