@@ -280,6 +280,7 @@ export default class BasicMessageEditor extends React.Component<IProps, IState> 
         const placeholder = this.props.placeholder.replace(/'/g, "\\'");
         this.editorRef.current.style.setProperty("--placeholder", `'${placeholder}'`);
         this.editorRef.current.classList.add("mx_BasicMessageComposer_inputEmpty");
+        this.editorRef.current.dir = "rtl";
     }
 
     private hidePlaceholder(): void {
@@ -378,6 +379,14 @@ export default class BasicMessageEditor extends React.Component<IProps, IState> 
         } else {
             replaceRangeAndMoveCaret(range, parts);
         }
+        if (plainText.length >= 1){
+            let theFirstChar = plainText.charCodeAt(0);
+            if ((theFirstChar >= 97 && theFirstChar <= 122) || (theFirstChar >= 65 && theFirstChar <= 90)){
+                this.editorRef.current.dir = "ltr";
+            }else {
+                this.editorRef.current.dir = "rtl";
+            }
+        }
     };
 
     private onInput = (event: Partial<InputEvent>): void => {
@@ -389,6 +398,14 @@ export default class BasicMessageEditor extends React.Component<IProps, IState> 
         const sel = document.getSelection();
         const { caret, text } = getCaretOffsetAndText(this.editorRef.current, sel);
         this.props.model.update(text, event.inputType, caret);
+        if (text.length === 1){
+            let theFirstChar = text.charCodeAt(0);
+            if ((theFirstChar >= 97 && theFirstChar <= 122) || (theFirstChar >= 65 && theFirstChar <= 90)){
+                this.editorRef.current.dir = "ltr";
+            }else {
+                this.editorRef.current.dir = "rtl";
+            }
+        }
     };
 
     private insertText(textToInsert: string, inputType = "insertText"): void {
@@ -814,7 +831,7 @@ export default class BasicMessageEditor extends React.Component<IProps, IState> 
                     aria-expanded={hasAutocomplete ? true : undefined}
                     aria-owns={hasAutocomplete ? "mx_Autocomplete" : undefined}
                     aria-activedescendant={activeDescendant}
-                    dir="auto"
+                    dir="rtl"
                     aria-disabled={this.props.disabled}
                     data-testid="basicmessagecomposer"
                 />
