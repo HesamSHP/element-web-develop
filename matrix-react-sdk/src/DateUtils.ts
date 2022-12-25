@@ -17,25 +17,43 @@ limitations under the License.
 */
 
 import { _t } from "./languageHandler";
+var moment = require('jalali-moment');
 
 function getDaysArray(): string[] {
     return [_t("Sun"), _t("Mon"), _t("Tue"), _t("Wed"), _t("Thu"), _t("Fri"), _t("Sat")];
 }
 
+// function getMonthsArray(): string[] {
+//     return [
+//         _t("Jan"),
+//         _t("Feb"),
+//         _t("Mar"),
+//         _t("Apr"),
+//         _t("May"),
+//         _t("Jun"),
+//         _t("Jul"),
+//         _t("Aug"),
+//         _t("Sep"),
+//         _t("Oct"),
+//         _t("Nov"),
+//         _t("Dec"),
+//     ];
+// }
+
 function getMonthsArray(): string[] {
     return [
-        _t("Jan"),
-        _t("Feb"),
-        _t("Mar"),
-        _t("Apr"),
-        _t("May"),
-        _t("Jun"),
-        _t("Jul"),
-        _t("Aug"),
-        _t("Sep"),
-        _t("Oct"),
-        _t("Nov"),
-        _t("Dec"),
+        _t("Far"),
+        _t("Ord"),
+        _t("Kho"),
+        _t("Tir"),
+        _t("Mor"),
+        _t("Sha"),
+        _t("Meh"),
+        _t("Aba"),
+        _t("Aza"),
+        _t("Dey"),
+        _t("Bah"),
+        _t("Esf"),
     ];
 }
 
@@ -71,8 +89,8 @@ export function formatDate(date: Date, showTwelveHour = false): string {
         // TODO: use standard date localize function provided in counterpart
         return _t("%(weekDayName)s, %(monthName)s %(day)s %(time)s", {
             weekDayName: days[date.getDay()],
-            monthName: months[date.getMonth()],
-            day: date.getDate(),
+            monthName: moment(date, 'YYYY/M/D HH:mm').locale('fa').format('MMMM'),
+            day: moment(date, 'YYYY/M/D HH:mm').locale('fa').format('D'),
             time: formatTime(date, showTwelveHour),
         });
     }
@@ -81,12 +99,15 @@ export function formatDate(date: Date, showTwelveHour = false): string {
 
 export function formatFullDateNoTime(date: Date): string {
     const days = getDaysArray();
-    const months = getMonthsArray();
-    return _t("%(weekDayName)s, %(monthName)s %(day)s %(fullYear)s", {
+    //const months = getMonthsArray();    
+    return _t("%(weekDayName)s, %(day)s %(monthName)s %(fullYear)s", {
         weekDayName: days[date.getDay()],
-        monthName: months[date.getMonth()],
-        day: date.getDate(),
-        fullYear: date.getFullYear(),
+        //monthName: months[date.getMonth()],
+        monthName: moment(date, 'YYYY/M/D HH:mm').locale('fa').format('MMMM'),
+        //day: date.getDate(),
+        day: moment(date, 'YYYY/M/D HH:mm').locale('fa').format('D'),
+        //fullYear: date.getFullYear(),
+        fullYear: moment(date, 'YYYY/M/D HH:mm').locale('fa').format('YYYY'),
     });
 }
 
@@ -95,9 +116,9 @@ export function formatFullDate(date: Date, showTwelveHour = false, showSeconds =
     const months = getMonthsArray();
     return _t("%(weekDayName)s, %(monthName)s %(day)s %(fullYear)s %(time)s", {
         weekDayName: days[date.getDay()],
-        monthName: months[date.getMonth()],
-        day: date.getDate(),
-        fullYear: date.getFullYear(),
+        monthName: moment(date, 'YYYY/M/D HH:mm').locale('fa').format('MMMM'),
+        day: moment(date, 'YYYY/M/D HH:mm').locale('fa').format('D'),
+        fullYear: moment(date, 'YYYY/M/D HH:mm').locale('fa').format('YYYY'),
         time: showSeconds ? formatFullTime(date, showTwelveHour) : formatTime(date, showTwelveHour),
     });
 }
