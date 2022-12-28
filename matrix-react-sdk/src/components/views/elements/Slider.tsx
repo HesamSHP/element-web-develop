@@ -96,7 +96,7 @@ export default class Slider extends React.Component<IProps> {
         }
 
         return (
-            <div className="mx_Slider">
+            <div className="mx_Slider" dir="ltr">
                 <div>
                     <div className="mx_Slider_bar">
                         <hr onClick={this.props.disabled ? () => {} : this.onClick.bind(this)} />
